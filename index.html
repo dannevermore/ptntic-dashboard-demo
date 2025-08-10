@@ -3,37 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PTNTIC Dashboard – Accueil</title>
+  <title>PTNTIC Dashboard Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Bienvenue sur la démonstration numérique du PTNTIC</h1>
-    <p>Explorez les services clés, visualisez les données stratégiques et découvrez l’impact du numérique en RDC.</p>
-    <a href="dashboard.html" class="cta-button">Accéder au tableau de bord</a>
+  <header class="header">
+    <h1>PTNTIC Dashboard</h1>
+    <nav>
+      <ul>
+        <li><a href="dashboard.html">Tableau de bord</a></li>
+        <li><a href="observatoire.html">Observatoire</a></li>
+        <li><a href="cybersecurite.html">Cybersécurité</a></li>
+        <li><a href="services.html">Services sous tutelle</a></li>
+        <li><a href="about.html">À propos</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <section>
-    <h2>📌 Objectifs du projet</h2>
-    <ul>
-      <li>Valoriser les initiatives numériques portées par le ministère</li>
-      <li>Offrir une visualisation claire des indicateurs et des projets</li>
-      <li>Faciliter l’accès aux services sous tutelle</li>
-    </ul>
-  </section>
+  <main class="main">
+    <section class="hero">
+      <h2>Bienvenue sur la démonstration numérique du PTNTIC</h2>
+      <p>Explorez les services clés, visualisez les données stratégiques et découvrez l’impact du numérique en RDC.</p>
+      <a href="dashboard.html" class="btn-primary">Accéder au tableau de bord</a>
+    </section>
 
-  <section>
-    <h2>📁 Contenu du tableau de bord</h2>
-    <ul>
-      <li>📡 Observatoire du Numérique</li>
-      <li>📊 Graphiques d’indicateurs</li>
-      <li>🗺️ Carte interactive des projets</li>
-      <li>🏛️ Logos et services sous tutelle</li>
-    </ul>
-  </section>
+    <section class="cards">
+      <div class="card">
+        <h3>Observatoire Territorial</h3>
+        <p>Suivi des infrastructures numériques par province.</p>
+        <a href="observatoire.html">Voir plus</a>
+      </div>
+      <div class="card">
+        <h3>Cybersécurité</h3>
+        <p>Indicateurs de sécurité et alertes CERT-RDC.</p>
+        <a href="cybersecurite.html">Voir plus</a>
+      </div>
+      <div class="card">
+        <h3>Services sous tutelle</h3>
+        <p>Présentation des entités clés du ministère PTNTIC.</p>
+        <a href="services.html">Voir plus</a>
+      </div>
+    </section>
+  </main>
 
-  <footer>
-    <p>🔗 <a href="https://github.com/dannevermore/ptntic-dashboard-demo">Voir le dépôt GitHub</a></p>
+  <footer class="footer">
+    <p>&copy; 2025 PTNTIC – République Démocratique du Congo</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
