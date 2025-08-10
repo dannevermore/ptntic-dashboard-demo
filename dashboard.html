@@ -4,82 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tableau de bord ministériel</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f4f6f8;
-      color: #333;
-    }
-    header {
-      background: #003366;
-      color: white;
-      padding: 2rem;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    header p {
-      margin-top: 0.5rem;
-      font-size: 1.1rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
-    }
-    .card {
-      background: white;
-      border-radius: 8px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .card h2 {
-      margin: 0.5rem 0;
-      font-size: 1.5rem;
-    }
-    .card p {
-      font-size: 1.1rem;
-      color: #666;
-    }
-    canvas {
-      max-width: 100%;
-      margin: 2rem auto;
-      display: block;
-    }
-    #map {
-      height: 400px;
-      margin: 2rem;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #003366;
-      color: white;
-    }
-    a {
-      color: #00bcd4;
-      text-decoration: none;
-    }
-    select {
-      margin: 2rem auto;
-      display: block;
-      font-size: 1rem;
-      padding: 0.5rem;
-    }
-  </style>
 </head>
 <body>
   <header>
     <h1>Tableau de bord ministériel</h1>
-    <p>Suivi des projets prioritaires</p>
+    <p>Suivi des projets numériques prioritaires</p>
   </header>
 
   <section class="grid">
@@ -109,10 +40,10 @@
     <option value="Infrastructures">Infrastructures</option>
   </select>
 
-  <div id="map"></div>
+  <div id="map" style="height: 400px; margin: 2rem;"></div>
 
   <footer>
-    <p><a href="index.html">← Retour à l’accueil</a></p>
+    <p><a href="services.html">→ Voir les services sous tutelle</a></p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
