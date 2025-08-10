@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tableau de bord ministériel</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -143,5 +144,29 @@
       }
     });
   </script>
+  <div id="map" style="height: 400px; margin: 2rem;"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  const map = L.map('map').setView([-2.88, 23.65], 5); // Centré sur la RDC
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Marqueurs simulés
+  const projets = [
+    { nom: "Projet Éducation - Kinshasa", lat: -4.32, lon: 15.31 },
+    { nom: "Projet Santé - Goma", lat: -1.68, lon: 29.23 },
+    { nom: "Projet Agriculture - Mbandaka", lat: 0.05, lon: 18.26 }
+  ];
+
+  projets.forEach(p => {
+    L.marker([p.lat, p.lon])
+      .addTo(map)
+      .bindPopup(`<strong>${p.nom}</strong>`)
+      .openPopup();
+  });
+</script>
 </body>
 </html>
