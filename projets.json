@@ -1,0 +1,20 @@
+[
+  {
+    "nom": "Projet Éducation - Kinshasa",
+    "description": "Renforcement des écoles numériques",
+    "lat": -4.32,
+    "lon": 15.31
+  },
+  {
+    "nom": "Projet Santé - Goma",
+    "description": "Téléconsultation et e-santé",
+    "lat": -1.68,
+    "lon": 29.23
+  },
+  {
+    "nom": "Projet Agriculture - Mbandaka",
+    "description": "Plateforme de suivi des récoltes",
+    "lat": 0.05,
+    "lon": 18.26
+  }
+]
