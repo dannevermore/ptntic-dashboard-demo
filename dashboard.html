@@ -182,29 +182,29 @@
 
     let allMarkers = [];
 
-    function afficherProjets(secteur) {
-      allMarkers.forEach(m => map.removeLayer(m));
-      allMarkers = [];
+function afficherProjets(secteur) {
+  allMarkers.forEach(m => map.removeLayer(m));
+  allMarkers = [];
 
-      fetch('projets.json')
-        .then(res => res.json())
-        .then(data => {
-          data
-            .filter(p => secteur === "tous" || p.secteur === secteur)
-            .forEach(p => {
-              const marker = L.marker([p.lat, p.lon])
-                .addTo(map)
-                .bindPopup(`<strong>${p.nom}</strong><br>${p.description}`);
-              allMarkers.push(marker);
-            });
+  fetch('projets.json')
+    .then(res => res.json())
+    .then(data => {
+      data
+        .filter(p => secteur === "tous" || p.secteur === secteur)
+        .forEach(p => {
+          const marker = L.marker([p.lat, p.lon])
+            .addTo(map)
+            .bindPopup(`<strong>${p.nom}</strong><br>${p.description}`);
+          allMarkers.push(marker);
         });
-    }
-
-    document.getElementById('secteurSelect').addEventListener('change', e => {
-      afficherProjets(e.target.value);
     });
+}
 
-    afficherProjets("tous");
+document.getElementById('secteurSelect').addEventListener('change', e => {
+  afficherProjets(e.target.value);
+});
+
+afficherProjets("tous"); // Initialisation
   </script>
 </body>
 </html>
