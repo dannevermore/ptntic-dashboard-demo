@@ -2,40 +2,97 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Tableau de bord</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Ministériel PTNTIC</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
-  <header class="header">
-    <h1>Tableau de bord PTNTIC</h1>
+  <header>
+    <h1>Tableau de bord ministériel – PTNTIC</h1>
     <nav>
       <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="observatoire.html">Observatoire</a></li>
-        <li><a href="cybersecurite.html">Cybersécurité</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="about.html">À propos</a></li>
+        <li><a href="#observatoire">Observatoire</a></li>
+        <li><a href="#indicateurs">Indicateurs</a></li>
+        <li><a href="#carte">Carte interactive</a></li>
+        <li><a href="#services">Services sous tutelle</a></li>
       </ul>
     </nav>
   </header>
 
-  <section class="chart-container">
-    <canvas id="barChart"></canvas>
+  <section id="observatoire">
+    <h2>📡 Observatoire du Numérique</h2>
+    <p>Suivi des projets, initiatives et politiques numériques en RDC.</p>
+    <ul>
+      <li>Projet FabLab communautaire – Kinshasa</li>
+      <li>Cybercafé rural – Kasaï</li>
+      <li>Plateforme e-santé – Goma</li>
+    </ul>
   </section>
 
-  <section id="map" class="chart-container" style="height:400px;"></section>
+  <section id="indicateurs">
+    <h2>📊 Indicateurs clés</h2>
+    <canvas id="barChart" width="400" height="200"></canvas>
+    <canvas id="lineChart" width="400" height="200"></canvas>
+  </section>
 
-  <footer class="footer">
-    &copy; 2025 PTNTIC
+  <section id="carte">
+    <h2>🗺️ Carte des projets numériques</h2>
+    <div id="map" style="height: 400px;"></div>
+  </section>
+
+  <section id="services">
+    <h2>🏛️ Services sous tutelle</h2>
+    <div class="logos">
+      <img src="assets/logo-arptc.png" alt="ARPTC" />
+      <img src="assets/logo-cnsc.png" alt="CNSC" />
+      <img src="assets/logo-aninf.png" alt="ANINF" />
+    </div>
+  </section>
+
+  <footer>
+    <p>🔗 <a href="https://github.com/dannevermore/ptntic-dashboard-demo">Voir le dépôt GitHub et README</a></p>
   </footer>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="script.js"></script>
+  <script>
+    // Bar Chart
+    new Chart(document.getElementById('barChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Inclusion', 'Cybersécurité', 'e-Santé'],
+        datasets: [{
+          label: 'Projets actifs',
+          data: [12, 7, 5],
+          backgroundColor: ['#007bff', '#28a745', '#ffc107']
+        }]
+      }
+    });
+
+    // Line Chart
+    new Chart(document.getElementById('lineChart'), {
+      type: 'line',
+      data: {
+        labels: ['2021', '2022', '2023', '2024'],
+        datasets: [{
+          label: 'Évolution des projets',
+          data: [3, 6, 9, 12],
+          borderColor: '#17a2b8',
+          fill: false
+        }]
+      }
+    });
+
+    // Leaflet Map
+    const map = L.map('map').setView([-4.3, 15.3], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+    L.marker([-4.3, 15.3]).addTo(map).bindPopup('FabLab Kinshasa');
+    L.marker([-6.1, 23.6]).addTo(map).bindPopup('Cybercafé Kasaï');
+    L.marker([-1.6, 29.2]).addTo(map).bindPopup('Plateforme e-santé Goma');
+  </script>
 </body>
 </html>
