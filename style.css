@@ -1,4 +1,4 @@
-/* Reset */
+/* Reset de base */
 * {
   margin: 0;
   padding: 0;
@@ -7,59 +7,53 @@
 
 body {
   font-family: 'Segoe UI', Roboto, sans-serif;
-  background-color: #f4f6f8;
+  background-color: #f9f9f9;
   color: #333;
   line-height: 1.6;
   padding: 20px;
 }
 
-/* Header */
+/* En-tête */
 header {
   background-color: #004080;
   color: white;
-  padding: 40px 20px;
+  padding: 20px;
   border-radius: 8px;
-  text-align: center;
   margin-bottom: 30px;
 }
 
 header h1 {
-  font-size: 2rem;
-  margin-bottom: 15px;
+  font-size: 1.8em;
+  margin-bottom: 10px;
 }
 
-header p {
-  font-size: 1.1rem;
-  max-width: 700px;
-  margin: 0 auto 20px;
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
-.cta-button {
-  display: inline-block;
-  background-color: #ffcc00;
-  color: #004080;
-  padding: 12px 24px;
-  border-radius: 6px;
+nav a {
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
-  transition: background-color 0.3s ease;
 }
 
-.cta-button:hover {
-  background-color: #e6b800;
+nav a:hover {
+  text-decoration: underline;
 }
 
 /* Sections */
 section {
   background-color: white;
-  padding: 25px;
+  padding: 20px;
   margin-bottom: 30px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
 section h2 {
-  font-size: 1.4rem;
+  font-size: 1.4em;
   margin-bottom: 15px;
   color: #004080;
 }
@@ -67,15 +61,46 @@ section h2 {
 section ul {
   list-style: disc;
   padding-left: 20px;
-  margin-top: 10px;
 }
 
-/* Footer */
+/* Graphiques */
+canvas {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+}
+
+/* Carte */
+#map {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Logos */
+.logos {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logos img {
+  height: 60px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logos img:hover {
+  transform: scale(1.05);
+}
+
+/* Pied de page */
 footer {
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.9em;
   color: #666;
-  margin-top: 40px;
 }
 
 footer a {
