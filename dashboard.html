@@ -1,30 +1,190 @@
-[
-  {
-    "nom": "Projet Éducation - Kinshasa",
-    "description": "Renforcement des écoles numériques",
-    "secteur": "Éducation",
-    "lat": -4.32,
-    "lon": 15.31
-  },
-  {
-    "nom": "Projet Santé - Goma",
-    "description": "Téléconsultation et e-santé",
-    "secteur": "Santé",
-    "lat": -1.68,
-    "lon": 29.23
-  },
-  {
-    "nom": "Projet Agriculture - Mbandaka",
-    "description": "Plateforme de suivi des récoltes",
-    "secteur": "Agriculture",
-    "lat": 0.05,
-    "lon": 18.26
-  },
-  {
-    "nom": "Projet Infrastructures - Lubumbashi",
-    "description": "Déploiement de fibre optique",
-    "secteur": "Infrastructures",
-    "lat": -11.68,
-    "lon": 27.48
-  }
-]
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tableau de bord ministériel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f6f8;
+      color: #333;
+    }
+    header {
+      background: #003366;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .card h2 {
+      margin: 0.5rem 0;
+      font-size: 1.5rem;
+    }
+    .card p {
+      font-size: 1.1rem;
+      color: #666;
+    }
+    canvas {
+      max-width: 100%;
+      margin: 2rem auto;
+      display: block;
+    }
+    #map {
+      height: 400px;
+      margin: 2rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #003366;
+      color: white;
+    }
+    a {
+      color: #00bcd4;
+      text-decoration: none;
+    }
+    select {
+      margin: 2rem auto;
+      display: block;
+      font-size: 1rem;
+      padding: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tableau de bord ministériel</h1>
+    <p>Suivi des projets prioritaires</p>
+  </header>
+
+  <section class="grid">
+    <div class="card"><h2>📁 12</h2><p>Projets en cours</p></div>
+    <div class="card"><h2>✅ 87%</h2><p>Taux de faisabilité</p></div>
+    <div class="card"><h2>🌍 4.2M</h2><p>Impact estimé</p></div>
+    <div class="card"><h2>💰 3.5M USD</h2><p>Budget engagé</p></div>
+    <div class="card"><h2>🤝 8</h2><p>Partenaires actifs</p></div>
+    <div class="card"><h2>🗺️ 14</h2><p>Zones couvertes</p></div>
+  </section>
+
+  <section style="padding: 2rem;">
+    <canvas id="barChart"></canvas>
+    <canvas id="pieChart"></canvas>
+  </section>
+
+  <h2 style="text-align:center; margin-top:2rem;">🗺️ Carte des projets prioritaires</h2>
+  <p style="text-align:center; color:#666; margin-bottom:1rem;">
+    Visualisation géographique des projets numériques par secteur.
+  </p>
+
+  <select id="secteurSelect">
+    <option value="tous">Tous les secteurs</option>
+    <option value="Éducation">Éducation</option>
+    <option value="Santé">Santé</option>
+    <option value="Agriculture">Agriculture</option>
+    <option value="Infrastructures">Infrastructures</option>
+  </select>
+
+  <div id="map"></div>
+
+  <footer>
+    <p><a href="index.html">← Retour à l’accueil</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const barCtx = document.getElementById('barChart').getContext('2d');
+    new Chart(barCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin'],
+        datasets: [{
+          label: 'Projets lancés',
+          data: [2, 3, 4, 2, 5, 6],
+          backgroundColor: '#003366'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+    new Chart(pieCtx, {
+      type: 'pie',
+      data: {
+        labels: ['Éducation', 'Santé', 'Agriculture', 'Infrastructures'],
+        datasets: [{
+          data: [30, 25, 20, 25],
+          backgroundColor: ['#00bcd4', '#4caf50', '#ff9800', '#9c27b0']
+        }]
+      },
+      options: {
+        responsive: true
+      }
+    });
+  </script>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([-2.88, 23.65], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    let allMarkers = [];
+
+    function afficherProjets(secteur) {
+      allMarkers.forEach(m => map.removeLayer(m));
+      allMarkers = [];
+
+      fetch('projets.json')
+        .then(res => res.json())
+        .then(data => {
+          data
+            .filter(p => secteur === "tous" || p.secteur === secteur)
+            .forEach(p => {
+              const marker = L.marker([p.lat, p.lon])
+                .addTo(map)
+                .bindPopup(`<strong>${p.nom}</strong><br>${p.description}`);
+              allMarkers.push(marker);
+            });
+        });
+    }
+
+    document.getElementById('secteurSelect').addEventListener('change', e => {
+      afficherProjets(e.target.value);
+    });
+
+    afficherProjets("tous");
+  </script>
+</body>
+</html>
