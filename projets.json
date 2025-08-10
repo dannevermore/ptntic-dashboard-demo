@@ -2,32 +2,29 @@
   {
     "nom": "Projet Éducation - Kinshasa",
     "description": "Renforcement des écoles numériques",
+    "secteur": "Éducation",
     "lat": -4.32,
     "lon": 15.31
   },
   {
     "nom": "Projet Santé - Goma",
     "description": "Téléconsultation et e-santé",
+    "secteur": "Santé",
     "lat": -1.68,
     "lon": 29.23
   },
   {
     "nom": "Projet Agriculture - Mbandaka",
     "description": "Plateforme de suivi des récoltes",
+    "secteur": "Agriculture",
     "lat": 0.05,
     "lon": 18.26
-  }
-
+  },
   {
-  "nom": "Projet Éducation - Kinshasa",
-  "description": "Renforcement des écoles numériques",
-  "secteur": "Éducation",
-  "lat": -4.32,
-  "lon": 15.31
-}
-
-  
-  
+    "nom": "Projet Infrastructures - Lubumbashi",
+    "description": "Déploiement de fibre optique",
+    "secteur": "Infrastructures",
+    "lat": -11.68,
+    "lon": 27.48
+  }
 ]
-
-
