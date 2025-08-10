@@ -68,6 +68,12 @@
       color: #00bcd4;
       text-decoration: none;
     }
+    select {
+      margin: 2rem auto;
+      display: block;
+      font-size: 1rem;
+      padding: 0.5rem;
+    }
   </style>
 </head>
 <body>
@@ -102,12 +108,26 @@
       <p>Zones couvertes</p>
     </div>
   </section>
-  <h2 style="text-align:center; margin-top:2rem;">🗺️ Carte des projets prioritaires</h2>
-  <div id="map"></div>
+
   <section style="padding: 2rem;">
     <canvas id="barChart"></canvas>
     <canvas id="pieChart"></canvas>
   </section>
+
+  <h2 style="text-align:center; margin-top:2rem;">🗺️ Carte des projets prioritaires</h2>
+  <p style="text-align:center; color:#666; margin-bottom:1rem;">
+    Visualisation géographique des projets numériques par secteur.
+  </p>
+
+  <select id="secteurSelect">
+    <option value="tous">Tous les secteurs</option>
+    <option value="Éducation">Éducation</option>
+    <option value="Santé">Santé</option>
+    <option value="Agriculture">Agriculture</option>
+    <option value="Infrastructures">Infrastructures</option>
+  </select>
+
+  <div id="map"></div>
 
   <footer>
     <p><a href="index.html">← Retour à l’accueil</a></p>
@@ -160,18 +180,31 @@
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    fetch('projets.json')
-      .then(response => response.json())
-      .then(data => {
-        data.forEach(p => {
-          L.marker([p.lat, p.lon])
-            .addTo(map)
-            .bindPopup(`<strong>${p.nom}</strong><br>${p.description}`);
+    let allMarkers = [];
+
+    function afficherProjets(secteur) {
+      allMarkers.forEach(m => map.removeLayer(m));
+      allMarkers = [];
+
+      fetch('projets.json')
+        .then(res => res.json())
+        .then(data => {
+          data
+            .filter(p => secteur === "tous" || p.secteur === secteur)
+            .forEach(p => {
+              const marker = L.marker([p.lat, p.lon])
+                .addTo(map)
+                .bindPopup(`<strong>${p.nom}</strong><br>${p.description}`);
+              allMarkers.push(marker);
+            });
         });
-      })
-      .catch(error => {
-        console.error("Erreur de chargement des projets :", error);
-      });
+    }
+
+    document.getElementById('secteurSelect').addEventListener('change', e => {
+      afficherProjets(e.target.value);
+    });
+
+    afficherProjets("tous");
   </script>
 </body>
 </html>
