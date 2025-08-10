@@ -83,30 +83,12 @@
   </header>
 
   <section class="grid">
-    <div class="card">
-      <h2>📁 12</h2>
-      <p>Projets en cours</p>
-    </div>
-    <div class="card">
-      <h2>✅ 87%</h2>
-      <p>Taux de faisabilité</p>
-    </div>
-    <div class="card">
-      <h2>🌍 4.2M</h2>
-      <p>Impact estimé</p>
-    </div>
-    <div class="card">
-      <h2>💰 3.5M USD</h2>
-      <p>Budget engagé</p>
-    </div>
-    <div class="card">
-      <h2>🤝 8</h2>
-      <p>Partenaires actifs</p>
-    </div>
-    <div class="card">
-      <h2>🗺️ 14</h2>
-      <p>Zones couvertes</p>
-    </div>
+    <div class="card"><h2>📁 12</h2><p>Projets en cours</p></div>
+    <div class="card"><h2>✅ 87%</h2><p>Taux de faisabilité</p></div>
+    <div class="card"><h2>🌍 4.2M</h2><p>Impact estimé</p></div>
+    <div class="card"><h2>💰 3.5M USD</h2><p>Budget engagé</p></div>
+    <div class="card"><h2>🤝 8</h2><p>Partenaires actifs</p></div>
+    <div class="card"><h2>🗺️ 14</h2><p>Zones couvertes</p></div>
   </section>
 
   <section style="padding: 2rem;">
@@ -133,7 +115,6 @@
     <p><a href="index.html">← Retour à l’accueil</a></p>
   </footer>
 
-  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     const barCtx = document.getElementById('barChart').getContext('2d');
@@ -171,7 +152,6 @@
     });
   </script>
 
-  <!-- Leaflet.js -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const map = L.map('map').setView([-2.88, 23.65], 5);
@@ -182,29 +162,29 @@
 
     let allMarkers = [];
 
-function afficherProjets(secteur) {
-  allMarkers.forEach(m => map.removeLayer(m));
-  allMarkers = [];
+    function afficherProjets(secteur) {
+      allMarkers.forEach(m => map.removeLayer(m));
+      allMarkers = [];
 
-  fetch('projets.json')
-    .then(res => res.json())
-    .then(data => {
-      data
-        .filter(p => secteur === "tous" || p.secteur === secteur)
-        .forEach(p => {
-          const marker = L.marker([p.lat, p.lon])
-            .addTo(map)
-            .bindPopup(`<strong>${p.nom}</strong><br>${p.description}`);
-          allMarkers.push(marker);
+      fetch('projets.json')
+        .then(res => res.json())
+        .then(data => {
+          data
+            .filter(p => secteur === "tous" || p.secteur === secteur)
+            .forEach(p => {
+              const marker = L.marker([p.lat, p.lon])
+                .addTo(map)
+                .bindPopup(`<strong>${p.nom}</strong><br>${p.description}`);
+              allMarkers.push(marker);
+            });
         });
+    }
+
+    document.getElementById('secteurSelect').addEventListener('change', e => {
+      afficherProjets(e.target.value);
     });
-}
 
-document.getElementById('secteurSelect').addEventListener('change', e => {
-  afficherProjets(e.target.value);
-});
-
-afficherProjets("tous"); // Initialisation
+    afficherProjets("tous");
   </script>
 </body>
 </html>
